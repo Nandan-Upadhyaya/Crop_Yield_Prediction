@@ -13,39 +13,55 @@ from sklearn.metrics import mean_absolute_error, r2_score
 import pickle
 import warnings
 
+#File path
 df = pd.read_csv('C:\\Users\\Nandan Upadhyaya.DESKTOP-CKL8RDH\\Desktop\\Machine Learning\\Crop_Yield_Prediction\\yield_df1.csv')
+
+#Dropping Unnamed Column
 df.drop('Unnamed: 0', axis=1, inplace=True)
 #print("head:", df.head())
+
 '''print("shape: ", df.shape)
+
+print("Handling Null values")
 print("Null:", df.isnull().sum())
+
+print("Duplicate Entries")
 print("Duplicates:", df.duplicated().sum())
-print("dropping duplicates :")
+
+print("Dropping Duplicates")
 df.drop_duplicates(inplace=True)
 print(df.head())
-df.duplicated().sum()
+
 print("Describing")
 print(df.describe())'''
+
 def isStr(obj):
     try:
         float(obj)
         return False
     except:
         return True
+    
 to_drop = df[df['average_rain_fall_mm_per_year'].apply(isStr)].index
-
 df.drop(to_drop, inplace=True)
-print("Converting column 3 to numerics...")
+
+print("Converting column 3 to Numerics")
 #print(df.head())
+
 print("converting average rainfall column to float")
 df['average_rain_fall_mm_per_year'] = df['average_rain_fall_mm_per_year'].astype(np.float64)
 #print(df.head())
+
 # Graphs and frequencies
 print("no of countries \n", len(df['Area'].unique()))
+
 # displaying a bar graph
 plt.figure(figsize=(15,20))
 sns.countplot(y=df['Area'])
 plt.show()
+
 print("no of countries below 500 crop yield\n", (df['Area'].value_counts() < 500).sum())
+
 country = df['Area'].unique()
 yield_per_country = []
 for state in country:
@@ -53,13 +69,15 @@ for state in country:
 print("Yield per country", df['hg/ha_yield'].sum())
 # print("Yield per country sum",yield_per_country)
 # Yield per country bar-graph
-'''plt.figure(figsize=(15, 20))
+plt.figure(figsize=(15, 20))
 plt.title('Yield per country\n')
 sns.barplot(y=country, x=yield_per_country)
-plt.show() '''
+plt.show()
+
 # countplot
 sns.countplot(y=df['Item'])
 plt.show()
+
 # Crop yield vs Item
 crops = df['Item'].unique()
 yield_per_crop = []
@@ -67,6 +85,7 @@ for crop in crops:
     yield_per_crop.append(df[df['Item'] == crop]['hg/ha_yield'].sum())
 sns.barplot(y=crops, x=yield_per_crop)
 plt.show()
+
 # Train-Test-Split
 col = ['Year', 'average_rain_fall_mm_per_year', 'pesticides_tonnes', 'avg_temp', 'Area', 'Item', 'hg/ha_yield']
 df = df[col]
@@ -74,6 +93,7 @@ X = df.iloc[:, :-1]
 y = df.iloc[:, -1]
 print(df.head(3))
 X_train, X_test, y_train, y_test = train_test_split(X, y, train_size=0.8, random_state=0, shuffle=True)
+
 # Converting Categorical to Numerical and Scaling the values
 ohe = OneHotEncoder(drop='first')
 scale = StandardScaler()
@@ -91,7 +111,6 @@ X_test_dummy = preprocesser.transform(X_test)
 '''print(preprocesser.get_feature_names_out(col[:-1]))'''
 
 # Training the model
-
 models = {
     'lr': LinearRegression(),
     'lss': Lasso(),
@@ -118,11 +137,11 @@ dtr.fit(X_train_dummy, y_train)
 y_pred = dtr.predict(X_test_dummy)
 
 
-# Create a residual plot
+# Create a scatter plot
 plt.scatter(y_test, y_pred)
 plt.xlabel("Actual Yield")
 plt.ylabel("Predicted Yield")
-plt.title("Actual vs. Predicted Crop Yield - Linear Regression")
+plt.title("Actual vs. Predicted Crop Yield - Decision Tree")
 plt.show()
 
 
