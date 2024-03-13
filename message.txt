@@ -1,0 +1,83 @@
+┌───────────────┐
+│   Customer        │
+├───────────────┤
+│ Customer ID       │
+│ Customer Name     │
+│ No of visits      │
+│ Contact Info      │
+└───────────┬───┘
+             │
+             ┌┴─────────────────────────┐
+             │                                  │
+┌─────────────────────┐    ┌─────────────────────┐    ┌─────────────────────┐
+│    Table Reservation │    │        Orders      │                 │      Payments            │
+├─────────────────────┤    ├─────────────────────┤    ├─────────────────────┤
+│      Table Name           │     │      Order ID           │      │       Payment ID           │
+│       Table ID            │     │        Customer Name    │      │       Order ID             │
+│     Table Status          ├──── ┤      Time               │     │       Payment Type         │
+│       Cust ID             │     │         Food Type       ├────┤       Payment Date         │
+│   Reservation Date        │     │        Delivery Address  │     │      Payment Status       │
+│   Reservation Time        │     │        Delivery Fees     │      └─────────────────────┘
+│    No. of Guests          │     └─────────────────────┘
+└─────────────────────┘
+                                         │
+                                         │
+                                         ┌┴─────────────────────────┐
+                                         │                                  │
+                           ┌─────────────────────┐    ┌─────────────────────┐
+                           │     Order Item      │    │         Time and Price Details│
+                           ├─────────────────────┤    ├─────────────────────┤
+                           │       Item ID             │    │       Order ID             │
+                           │      Food Type            ├────┤       Time               │
+                           │        Price              │    │       Price                │
+                           │      Quantity             │    │      Delivery Fees        │
+                           └─────────────────────┘    └─────────────────────┘
+                                         │
+                                         │
+                           ┌─────────────┴─────────────┐
+                           │         Menu                      │
+                           ├───────────────────────────┤
+                           │        Food Item                  │
+                           │         Item ID                   │
+                           │          Price                    │
+                           │         Item Type                 │
+                           │        Availability               │
+                           │         Category                  │
+                           └───────────────────────────┘
+
+┌─────────────────────┐
+│     Menu Update           │
+├─────────────────────┤
+│       Order ID            │
+│       Order Name          │
+│        Price              │
+│        Total              │
+└─────────────────────┘
+
+┌─────────────────────┐
+│   Daily Transaction       │
+├─────────────────────┤
+│       Order ID            │
+│        Price              │
+│    Delivery Fees          │
+│      Grand Total          │
+└─────────────────────┘
+
+┌─────────────────────┐
+│       Employee            │
+├─────────────────────┤
+│     Employee ID           │
+│     Employee Name         │
+│        Role               │
+│      Department           │
+└─────────────────────┘
+             │
+             │
+┌─────────────┴─────────────┐
+│       Staff Schedule              │
+├───────────────────────────┤
+│        Schedule ID                │
+│         Employee ID               │
+│           Shift                   │
+│           Date                    │
+└───────────────────────────┘
