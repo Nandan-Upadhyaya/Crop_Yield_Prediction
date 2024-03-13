@@ -115,11 +115,11 @@ X_test_dummy = preprocesser.transform(X_test)
 
 # Training the model
 models = {
-    'lr': LinearRegression(),
-    'lss': Lasso(),
-    'Rid': Ridge(),
-    'Dtr': DecisionTreeRegressor(),
-    'knn' : KNeighborsRegressor(n_neighbors=100)
+    'Linear Regression': LinearRegression(),
+    'Lasso Regression': Lasso(),
+    'Ridge Regression': Ridge(),
+    'Decision Tree Regressor': DecisionTreeRegressor(),
+    'K Nearest Neighbours Regressor' : KNeighborsRegressor(n_neighbors=100)
 }
 
 plt.figure(figsize=(12, 10))
@@ -128,17 +128,17 @@ for name, md in models.items():
     md.fit(X_train_dummy, y_train)
     y_pred = md.predict(X_test_dummy)
 
-    if name == 'lr':  # For Linear Regression
+    if name == 'Linear Regression':  # For Linear Regression
         mae = mean_absolute_error(y_test, y_pred)
         r2 = r2_score(y_test, y_pred)
         mse = mean_squared_error(y_test,y_pred)
-        print(f"{name} : MAE : {mae} R-squared : {r2} MSE : {mse}")
+        print(f"{name} : \n Mean-Absolute-Error(MAE) : {mae} \t R-squared : {r2} \t Mean-Squared-Error(MSE) : {mse} \n\n")
     else:  # For other algorithms
-        print(f"{name} : MAE : {mean_absolute_error(y_test, y_pred)} R-squared : {r2_score(y_test, y_pred)} MSE : {mean_squared_error(y_test, y_pred)} ")
+        print(f"{name} : \n  Mean-Absolute-Error(MAE) : {mean_absolute_error(y_test, y_pred)} \t R-squared : {r2_score(y_test, y_pred)} \t Mean-Squared-Error(MSE)  : {mean_squared_error(y_test, y_pred)}\n\n ")
     
     
-knn = models['knn']
-dtr = models['Dtr']
+knn = models['K Nearest Neighbours Regressor']
+dtr = models['Decision Tree Regressor']
 y_pred_knn = knn.predict(X_test_dummy)
 y_pred_dtr = dtr.predict(X_test_dummy)
 
