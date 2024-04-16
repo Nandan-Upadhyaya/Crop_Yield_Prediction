@@ -87,7 +87,7 @@
 <body>
     <div class="container">
         <!-- Main Heading -->
-        <h1 class="text-center custom-heading mt-5 mb-4">Crop Yield Prediction Per Country</h1>
+        <h1 class="text-center text-succes custom-heading mt-5 mb-4">Crop Yield Prediction Per Country</h1>
         <div class="row justify-content-center">
             <div class="col-lg-6 custom-box" id="prediction-box">
                 <!-- Subheading -->
@@ -112,7 +112,7 @@
                     </div>
                     <div class="mb-3">
                         <label for="Area" class="form-label">Area</label>
-                        <input type="text" class="form-control" name="Area">
+                        <input type="text" class="form-control" name="Area" >
                     </div>
                     <div class="mb-3">
                         <label for="Item" class="form-label">Item</label>
@@ -122,16 +122,17 @@
                     <button type="submit" class="btn btn-primary btn-lg btn-block btn-predict">Predict</button>
                 </form>
                 <!-- Prediction display omitted for brevity -->
+                {% if prediction %}
+                <h1 class="text-center"> Predicted Yield: <br>{{prediction}}</h1>
+          
+                {% endif %}
             </div>
         </div>
 
-      {% if prediction %}
-      <h1 class="text-center"> Predicted Yield: <br>{{prediction}}</h1>
-
-      {% endif %}
+   
 </div>
 
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz" crossorigin="anonymous"></script>
   </body>
 </html>
