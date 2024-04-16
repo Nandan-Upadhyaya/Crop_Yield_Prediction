@@ -21,7 +21,7 @@ import warnings
 warnings.simplefilter(action='ignore', category=FutureWarning)
 
 # Load dataset
-df = pd.read_csv('C:\\Users\\Nandan Upadhyaya.DESKTOP-CKL8RDH\\Desktop\\Machine Learning\\Crop_Yield_Prediction\\yield_df1.csv')
+df = pd.read_csv('E:\\VEC\\Crop_Yield_Prediction\\yield_df1.csv')
 
 # Drop 'Unnamed' column if present
 if 'Unnamed: 0' in df.columns:

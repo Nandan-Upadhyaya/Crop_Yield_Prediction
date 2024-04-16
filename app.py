@@ -2,7 +2,6 @@ from flask import Flask,request, render_template
 import numpy as np
 import pickle
 
-
 #loading models
 dtr = pickle.load(open('dtr.pkl','rb'))
 preprocessor = pickle.load(open('preprocessor.pkl','rb'))
